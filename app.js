@@ -33,23 +33,49 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
     roundScore = roundScore + diceNumber;
     document.getElementById("current-" + activePLayer).textContent = roundScore;
   } else {
-    //ene toglogchiin eeljindee tsugluulsan onoog  0 bolgono.
-    document.getElementById("current-" + activePLayer).textContent = 0;
-    // herev idevhtai toglogch in 0 baival idevhtai toglogchiig 1 boldo
-    //ugui bol 0 bolgo
-    roundScore = 0;
-    activePLayer === 0 ? (activePLayer = 1) : (activePLayer = 0);
-
-    //ulaan tseg shiljuulne
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
-
-    // dhoog tur alga bolgoh
-    diceDom.style.display = none;
-    // if (activePLayer === 0) {
-    //   activePLayer = 1;
-    // } else {
-    //   activePLayer = 0;
-    // }
+    switchToNextPlayer();
   }
 });
+
+// hold tovchnii event
+document.querySelector(".btn-hold").addEventListener("click", function () {
+  // ug toglogchiin tsugluulsan onoog global onoon deer nemne
+  // if (activePLayer === 0) {
+  //   scores[0] = scores[0] + roundScore;
+  // } else {
+  //   scores[1] = scores[1] + roundScore;
+  // }
+  scores[activePLayer] = scores[activePLayer] + roundScore;
+  //delgets deer onoog uurcgilnu
+  document.getElementById("score-" + activePLayer).textContent =
+    scores[activePLayer];
+  //ug toglogch hojson ecehiig shalgash
+  if (scores[activePLayer] >= 10) {
+    // Yalagchgesen text bichnee
+    document.getElementById("name-" + activePLayer).textContent = "WINNER!";
+    document
+      .querySelector(".player-" + activePLayer + "-panel")
+      .classList.add("winner");
+    document
+      .querySelector(".player-" + activePLayer + "-panel")
+      .classList.remove("active");
+  } else {
+    //elljiin onog 0 bolgono
+    switchToNextPlayer();
+  }
+});
+
+function switchToNextPlayer() {
+  //ene toglogchiin eeljindee tsugluulsan onoog  0 bolgono.
+  document.getElementById("current-" + activePLayer).textContent = 0;
+  // herev idevhtai toglogch in 0 baival idevhtai toglogchiig 1 boldo
+  //ugui bol 0 bolgo
+  roundScore = 0;
+  activePLayer === 0 ? (activePLayer = 1) : (activePLayer = 0);
+  //ulaan tseg shiljuulne
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+  // dhoog tur alga bolgoh
+  diceDom.style.display = "none";
+  //toglogchiin ellj solino
+}
