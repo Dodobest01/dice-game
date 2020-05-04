@@ -80,7 +80,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     document.getElementById("score-" + activePLayer).textContent =
       scores[activePLayer];
     //ug toglogch hojson ecehiig shalgash
-    if (scores[activePLayer] >= 10) {
+    if (scores[activePLayer] >= 50) {
       //Togloom duusgah
       isNewGame = false;
       // Yalagchgesen text bichnee
