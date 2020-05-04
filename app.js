@@ -109,7 +109,7 @@ function switchToNextPlayer() {
   document.querySelector(".player-0-panel").classList.toggle("active");
   document.querySelector(".player-1-panel").classList.toggle("active");
   // dhoog tur alga bolgoh
-  diceDom.style.display = "none";
+  // diceDom.style.display = "none";
   //toglogchiin ellj solino
 }
 
